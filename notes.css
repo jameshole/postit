@@ -58,6 +58,10 @@ a.export {
 	top: 10px;
 	left: 55px;
 }
+a.upload {
+	top: 10px;
+	left: 100px;
+}
 a.circle-button {
 	position: fixed;
 	background-color: #673AB7;
@@ -78,8 +82,4 @@ a.circle-button:hover {
 }
 a.circle-button:focus, a.circle-button:active {
 	outline: none;
-}
-
-.the-file {
-	display: none;
 }

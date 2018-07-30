@@ -2,6 +2,7 @@
 	$(document).ready(function() {
 		$postit = $('<div class="postit"><p></p><a class="edit material-icons">edit</a></div>');
 		$pinBoard = $('.pin-board');
+		$file = $('input.import');
 		$('.pin-board').draggable({
 			addClasses: true,
 		});
@@ -22,6 +23,24 @@
 				});
 			});
 			download('export.txt', JSON.stringify(exportObj));
+		})
+		$('.upload').click(function() {
+			$file.click();
+		})
+		$file.change(function() {
+			file = $file[0].files[0];
+			var read = new FileReader();
+			read.readAsBinaryString(file);
+			read.onloadend = function(){
+				var notes = JSON.parse(read.result);
+				notes.notes.forEach(function(note) {
+					var $new = $postit.clone();
+					$new = addPostit($new);
+					$new.find('p').text(note.text);
+					$new.css('left', note.left);
+					$new.css('top', note.top);
+				});
+			}
 		})
 		$('html').contextmenu(function(e){
 			e.preventDefault();
@@ -69,5 +88,6 @@
 		$postit.dblclick(function() {
 			$(this).find('.edit').click();
 		});
+		return $postit;
 	}
 })(jQuery);
