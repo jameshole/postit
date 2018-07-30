@@ -83,10 +83,16 @@
 				var content = $postit.find('p').text();
 				$postit.find('p').remove();
 				$postit.append($('<textarea></textarea>').val(content));
+				$postit.find('textarea').focus();
 			}
 		});
 		$postit.dblclick(function() {
 			$(this).find('.edit').click();
+		});
+		$postit.mousedown(function(e){
+			if (e.which == 2) {
+				$postit.remove();
+			}
 		});
 		return $postit;
 	}
