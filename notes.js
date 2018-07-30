@@ -1,6 +1,6 @@
 (function ($) {
 	$(document).ready(function() {
-		$postit = $('<div class="postit"><p></p><a class="edit"></a></div>');
+		$postit = $('<div class="postit"><p></p><a class="edit material-icons">edit</a></div>');
 		$pinBoard = $('.pin-board');
 		$('.pin-board').draggable({
 			addClasses: true,
@@ -10,7 +10,32 @@
 			var $new = $postit.clone();
 			addPostit($new);
 		});
+		$('.export').click(function() {
+			var exportObj = {
+				notes: []
+			};
+			$('.postit').each(function() {
+				exportObj.notes.push({
+					'text': $(this).find('p').text(),
+					'left': $(this).css('left'),
+					'top': $(this).css('top')
+				});
+			});
+			download('export.txt', JSON.stringify(exportObj));
+		})
 	});
+	function download(filename, text) {
+		var element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		element.setAttribute('download', filename);
+
+		element.style.display = 'none';
+		document.body.appendChild(element);
+
+		element.click();
+
+		document.body.removeChild(element);
+	}
 	function addPostit($postit) {
 		$postit.draggable({
 			addClasses: true,
@@ -21,11 +46,13 @@
 		$postit.css('position', 'absolute');
 		$postit.find('.edit').click(function() {
 			if ($postit.hasClass('editting')) {
+				$(this).text('edit');
 				$postit.removeClass('editting');
 				var content = $postit.find('textarea').val();
 				$postit.find('textarea').remove();
 				$postit.append($('<p></p>').text(content));
 			} else {
+				$(this).text('save');
 				$postit.addClass('editting');
 				var content = $postit.find('p').text();
 				$postit.find('p').remove();

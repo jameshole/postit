@@ -10,6 +10,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	position: relative;
+	cursor: move;
 }
 .postit {
 	width: 150px;
@@ -43,31 +44,42 @@ html, body {
 	position: absolute;
 	top: 0;
 	right: 0;
-	background-image: url('edit.png');
-	background-size: 100%;
 	opacity: 0.5;
-	width: 32px;
-	height: 32px;
 }
 .postit a.edit:hover {
 	cursor: pointer;
 	opacity: 1;
 }
 a.add-postit {
-	position: fixed;
 	top: 10px;
 	left: 10px;
+}
+a.export {
+	top: 10px;
+	left: 55px;
+}
+a.circle-button {
+	position: fixed;
 	background-color: #673AB7;
 	color: white;
-	font-size: 24px;
+	font-size: 30px;
 	height: 30px;
 	width: 30px;
+	padding: 3px;
 	border-radius: 50%;
 	display: block;
 	text-align: center;
 	cursor: pointer;
 	user-select: none;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+a.add-postit:hover {
+	background-color: #9575CD;
 }
 a.add-postit:focus, a.add-postit:active {
 	outline: none;
+}
+
+.the-file {
+	display: none;
 }
