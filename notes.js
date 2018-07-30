@@ -23,6 +23,13 @@
 			});
 			download('export.txt', JSON.stringify(exportObj));
 		})
+		$('html').contextmenu(function(e){
+			e.preventDefault();
+			var $new = $postit.clone();
+			addPostit($new);
+			$new.css('left',e.offsetX+'px');
+			$new.css('top',e.offsetY+'px');
+		})
 	});
 	function download(filename, text) {
 		var element = document.createElement('a');
@@ -58,6 +65,9 @@
 				$postit.find('p').remove();
 				$postit.append($('<textarea></textarea>').val(content));
 			}
+		});
+		$postit.dblclick(function() {
+			$(this).find('.edit').click();
 		});
 	}
 })(jQuery);

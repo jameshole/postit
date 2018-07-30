@@ -73,10 +73,10 @@ a.circle-button {
 	user-select: none;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
-a.add-postit:hover {
+a.circle-button:hover {
 	background-color: #9575CD;
 }
-a.add-postit:focus, a.add-postit:active {
+a.circle-button:focus, a.circle-button:active {
 	outline: none;
 }
 
